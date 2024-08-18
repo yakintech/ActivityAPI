@@ -1,3 +1,4 @@
+using Activity.BLL;
 using Activity.Dto;
 using Activity.Validations.Validators;
 using FluentValidation;
@@ -14,8 +15,16 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Could not find a part of the path
+//'C:\Users\user\source\repos\Activity\Activity.API\wwwroot\images\image.jpg'.
+//add static files
+
 
 builder.Services.AddScoped<IValidator<CreateCategoryRequestDto>, CreateCategoryRequestValidation>();
+
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
 
 var app = builder.Build();
@@ -28,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseAuthorization();
 

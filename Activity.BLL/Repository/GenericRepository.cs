@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Activity.BLL.Repository
 {
-    public class GenericRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
 
         internal ActivityDbContext db;
@@ -25,25 +25,23 @@ namespace Activity.BLL.Repository
             entity.AddDate = DateTime.Now;
             entity.UpdateDate = DateTime.Now;
             entity.IsDeleted = false;
-          
+
             dbSet.Add(entity);
             db.SaveChanges();
             return entity;
         }
 
-        public List<TEntity> GetAll(int? pageNumber, int? pageSize) 
+        public List<TEntity> GetAll(int pageNumber, int pageSize)
         {
-            if (pageNumber != null && pageSize != null)
-            {
-                var result = dbSet.Where(x => x.IsDeleted == false).Skip((pageNumber.Value - 1) * pageSize.Value).Take(pageSize.Value).ToList();
-                return result;
-            }
-            else
-            {
-                var result = dbSet.Where(x => x.IsDeleted == false).ToList();
-                return result;
-            }
-       
+            var result = dbSet.Where(x => x.IsDeleted == false).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            return result;
+
+        }
+
+        public List<TEntity> GetAll()
+        {
+            var result = dbSet.Where(x => x.IsDeleted == false).ToList();
+            return result;
         }
 
         public TEntity GetById(Guid id)
