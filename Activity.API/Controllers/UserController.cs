@@ -31,7 +31,14 @@ namespace Activity.API.Controllers
             
             if (formFile != null)
             {
+
                 var ext = Path.GetExtension(formFile.FileName);
+
+                if (ext == ".jpg" || ext == ".png" || ext == ".jpeg")
+                {
+                    return BadRequest("File type is not valid");
+                }
+
                 var fileName = Guid.NewGuid() + ext;
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
                 using (var stream = new FileStream(path, FileMode.Create))

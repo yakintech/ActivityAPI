@@ -1,5 +1,7 @@
+using Activity.API.Extensions;
 using Activity.BLL;
 using Activity.Dto;
+using Activity.Dto.Activity;
 using Activity.Validations.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -20,7 +22,7 @@ builder.Services.AddSwaggerGen();
 //add static files
 
 
-builder.Services.AddScoped<IValidator<CreateCategoryRequestDto>, CreateCategoryRequestValidation>();
+builder.Services.AddValidations();
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

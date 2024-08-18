@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Activity.DAL.ORM;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Activity.DAL.ORM
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Activity> Activities { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -44,10 +44,31 @@ namespace Activity.BLL.Repository
             return result;
         }
 
+        public List<TEntity> GetAllWithIncludes(params string[] includes)
+        {
+            var query = dbSet.Where(x => x.IsDeleted == false);
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+            return query.ToList();
+        }
+
         public TEntity GetById(Guid id)
         {
             var result = dbSet.FirstOrDefault(x => x.ID == id && x.IsDeleted == false);
             return result;
+        }
+
+        //getById with includes
+        public TEntity GetByIdWithIncludes(Guid id, params string[] includes)
+        {
+            var query = dbSet.Where(x => x.ID == id && x.IsDeleted == false);
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+            return query.FirstOrDefault();
         }
 
         public void Remove(Guid id)

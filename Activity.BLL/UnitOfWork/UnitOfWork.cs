@@ -14,6 +14,7 @@ namespace Activity.BLL
 
         private GenericRepository<User> userRepository;
         private GenericRepository<Category> categoryRepository;
+        private GenericRepository<Activity.DAL.ORM.Activity> activityRepository;
 
         public GenericRepository<User> UserRepository
         {
@@ -39,6 +40,17 @@ namespace Activity.BLL
             }
         }
 
+        public GenericRepository<Activity.DAL.ORM.Activity> ActivityRepository
+        {
+            get
+            {
+                if (activityRepository == null)
+                {
+                    activityRepository = new GenericRepository<Activity.DAL.ORM.Activity>();
+                }
+                return activityRepository;
+            }
+        }
 
         public void Save()
         {

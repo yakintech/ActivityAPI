@@ -15,5 +15,7 @@ namespace Activity.BLL.Repository
         public TEntity GetById(Guid id);
         public void Remove(Guid id);
         public TEntity Update(TEntity entity);
+
+        public List<TEntity> GetAllWithIncludes(params string[] includes);
     }
 }
