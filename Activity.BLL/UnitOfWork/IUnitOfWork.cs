@@ -14,6 +14,8 @@ namespace Activity.BLL
         public GenericRepository<User> UserRepository { get; }
         public GenericRepository<Category> CategoryRepository { get; }
         public GenericRepository<Activity.DAL.ORM.Activity> ActivityRepository { get; }
+
+        public GenericRepository<Blog> BlogRepository { get; }
         void Save();
     }
 }

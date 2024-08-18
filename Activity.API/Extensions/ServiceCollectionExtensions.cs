@@ -15,6 +15,8 @@ namespace Activity.API.Extensions
             services.AddFluentValidationAutoValidation();
             services.AddScoped<IValidator<CreateCategoryRequestDto>, CreateCategoryRequestValidation>();
             services.AddScoped<IValidator<CreateActivityRequestDto>, CreateActivityRequestValidation>();
+            services.AddScoped<IValidator<UpdateActivityRequestDto>, UpdateActivityRequestValidation>();
+            services.AddScoped<IValidator<CreateBlogRequestDto>, CreateBlogRequestValidation>();
             return services;
         }
     }

@@ -12,8 +12,8 @@ namespace Activity.DAL.ORM
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
-
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

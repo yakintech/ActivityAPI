@@ -15,6 +15,7 @@ namespace Activity.BLL
         private GenericRepository<User> userRepository;
         private GenericRepository<Category> categoryRepository;
         private GenericRepository<Activity.DAL.ORM.Activity> activityRepository;
+        private GenericRepository<Blog> blogRepository;
 
         public GenericRepository<User> UserRepository
         {
@@ -27,7 +28,6 @@ namespace Activity.BLL
                 return userRepository;
             }
         }
-
         public GenericRepository<Category> CategoryRepository
         {
             get
@@ -39,7 +39,6 @@ namespace Activity.BLL
                 return categoryRepository;
             }
         }
-
         public GenericRepository<Activity.DAL.ORM.Activity> ActivityRepository
         {
             get
@@ -49,6 +48,17 @@ namespace Activity.BLL
                     activityRepository = new GenericRepository<Activity.DAL.ORM.Activity>();
                 }
                 return activityRepository;
+            }
+        }
+        public GenericRepository<Blog> BlogRepository
+        {
+            get
+            {
+                if (blogRepository == null)
+                {
+                    blogRepository = new GenericRepository<Blog>();
+                }
+                return blogRepository;
             }
         }
 

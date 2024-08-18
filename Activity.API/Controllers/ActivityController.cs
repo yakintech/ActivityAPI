@@ -79,5 +79,44 @@ namespace Activity.API.Controllers
                 return Ok(response);
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Remove(Guid id)
+        {
+            var activity = _unitOfWork.ActivityRepository.GetById(id);
+
+            if (activity == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.ActivityRepository.Remove(id);
+            _unitOfWork.Save();
+            return Ok();
+        }
+
+
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, UpdateActivityRequestDto model)
+        {
+            var activity = _unitOfWork.ActivityRepository.GetById(id);
+
+            if (activity == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                activity.Name = model.Name;
+                activity.Description = model.Description;
+                activity.StartDate = model.StartDate;
+                activity.EndDate = model.EndDate;
+                activity.CategoryId = model.CategoryId;
+                _unitOfWork.Save();
+
+                return Ok();
+            }
+            
+        }
     }
 }
